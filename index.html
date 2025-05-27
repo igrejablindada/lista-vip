@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Adiciona meta viewport para responsividade -->
   <title>Curso exclusivo!<br>Seja o primeiro a saber quando abrirem as inscrições!</title>
   <style>
     body {
@@ -27,6 +28,7 @@
       color: #ff4d00;
       margin-bottom: 10px;
       text-align: center;
+      font-size: 1.5em;
     }
     .form-container p {
       font-size: 14px;
@@ -67,6 +69,43 @@
       margin-top: 15px;
       font-weight: bold;
       color: #ff4d00;
+    }
+
+    /* Responsividade: ajusta o tamanho e layout para telas menores */
+    @media (max-width: 600px) {
+      body {
+        padding: 0 10px; /* Ajuste para telas menores */
+        height: auto;
+      }
+      .form-container {
+        padding: 20px;
+      }
+      .form-container h2 {
+        font-size: 1.2em; /* Ajusta o tamanho do título */
+      }
+      .form-container p {
+        font-size: 12px; /* Ajusta o tamanho da descrição */
+      }
+      input {
+        font-size: 14px; /* Ajusta o tamanho da fonte nos inputs */
+        padding: 10px;
+      }
+      button {
+        font-size: 14px; /* Ajusta o tamanho do botão */
+        padding: 12px;
+      }
+    }
+    
+    @media (max-width: 400px) {
+      .form-container h2 {
+        font-size: 1em; /* Ajuste maior para telas muito pequenas */
+      }
+      .form-container p {
+        font-size: 10px; /* Ajuste para telas muito pequenas */
+      }
+      input {
+        font-size: 12px; /* Ajuste do tamanho dos campos de input */
+      }
     }
   </style>
 </head>
