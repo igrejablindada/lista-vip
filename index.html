@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lista VIP – Curso Exclusivo</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-container {
+      background: #000;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 100, 0, 0.4);
+      max-width: 400px;
+      width: 100%;
+    }
+    .form-container h2 {
+      color: #ff4d00;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .form-container p {
+      font-size: 14px;
+      color: #ccc;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #1a1a1a;
+      color: white;
+      font-size: 16px;
+    }
+    input::placeholder {
+      color: #999;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(to right, #ff4d00, #ff0000);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    #resposta {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #ff4d00;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <h2>🚀 Lista VIP – Curso Exclusivo</h2>
+  <p>Entre agora na lista VIP e seja o primeiro a saber quando abrirem as inscrições!</p>
+  <form id="formLeads">
+    <input type="text" name="nome" placeholder="Seu nome" required />
+    <input type="email" name="email" placeholder="Seu e-mail" required />
+    <input type="text" name="whatsapp" placeholder="Seu WhatsApp" required />
+    <button type="submit">Quero fazer parte da lista VIP 🔥</button>
+  </form>
+  <p id="resposta"></p>
+</div>
+
+<script>
+  // 🔁 SUBSTITUA PELO LINK DO SEU WEB APP GERADO NO PASSO 2
+  const scriptURL = "https://script.google.com/macros/s/AKfycbwSt6puE4uCWHKrjfgSPKHBswv9LPjqrEQJexNWT3OvQYIVhpNpj7SbZAuoOAMCpDfzHg/exec";
+
+  const form = document.getElementById('formLeads');
+  const resposta = document.getElementById('resposta');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const formData = new FormData(form);
+
+    fetch(scriptURL, {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(msg => {
+      if (msg === "duplicado_email") {
+        resposta.innerText = "⚠️ Este e-mail já está cadastrado.";
+      } else if (msg === "duplicado_whatsapp") {
+        resposta.innerText = "⚠️ Este WhatsApp já está cadastrado.";
+      } else if (msg === "sucesso") {
+        resposta.innerText = "✅ Cadastro realizado com sucesso!";
+        form.reset();
+      } else {
+        resposta.innerText = "⚠️ Erro desconhecido, tente novamente.";
+      }
+    })
+    .catch(error => {
+      console.error('Erro!', error.message);
+      resposta.innerText = "⚠️ Erro ao enviar. Tente novamente.";
+    });
+  });
+</script>
+
+</body>
+</html>
